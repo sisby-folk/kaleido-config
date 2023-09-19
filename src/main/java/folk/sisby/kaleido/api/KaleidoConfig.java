@@ -15,6 +15,10 @@ public class KaleidoConfig {
         return ConfigImpl.createReflective(environment, familyId, id, Paths.get(""), b -> {}, configCreatorClass, b -> {});
     }
 
+    public static <T extends ReflectiveConfig> T createToml(Path configPath, String familyId, String id, Class<T> configCreatorClass) {
+        return ConfigImpl.createReflective(tomlEnvironment(configPath), familyId, id, Paths.get(""), b -> {}, configCreatorClass, b -> {});
+    }
+
     public static ConfigEnvironment tomlEnvironment(Path configPath) {
         return new ConfigEnvironment(configPath, "toml", new NightConfigSerializer<>("toml", new TomlParser(), new TomlWriter()));
     }
