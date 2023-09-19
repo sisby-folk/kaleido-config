@@ -5,10 +5,15 @@ plugins {
 }
 
 base {
-    group = "folk.sisby"
-    archivesName = "kaleido-config"
-    version = "0.1"
+    group = 'folk.sisby'
+    archivesName = 'kaleido-config'
+    version = '0.1'
 }
+
+def baseVersion = project.version
+def qc_version = '1.1.0-beta.3'
+
+project.version = project.version + '+' + qc_version
 
 repositories {
     mavenCentral()
@@ -23,7 +28,7 @@ configurations {
 dependencies {
     shade 'com.electronwill.night-config:core:3.6.7'
     shade 'com.electronwill.night-config:toml:3.6.7'
-    shade 'org.quiltmc:quilt-config:1.1.0-beta.3'
+    shade 'org.quiltmc:quilt-config:' + qc_version
 }
 
 jar {
@@ -46,12 +51,12 @@ tasks.register('sourcesJar', Jar) {
 
 publishing {
     repositories {
-        if (System.getenv("KALEIDO_MAVEN_URL")) {
+        if (System.getenv('KALEIDO_MAVEN_URL')) {
             maven {
-                url = System.getenv("KALEIDO_MAVEN_URL")
+                url = System.getenv('KALEIDO_MAVEN_URL')
                 credentials {
-                    username = System.getenv("KALEIDO_MAVEN_USERNAME")
-                    password = System.getenv("KALEIDO_MAVEN_PASSWORD")
+                    username = System.getenv('KALEIDO_MAVEN_USERNAME')
+                    password = System.getenv('KALEIDO_MAVEN_PASSWORD')
                 }
             }
         }
