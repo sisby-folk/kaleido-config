@@ -108,11 +108,9 @@ if (System.getenv("GITHUB_TOKEN")) {
         targetCommitish 'main'
         draft false
         prerelease false
-        releaseAssets shadowJar.archiveFile
-        releaseAssets sourcesJar.archiveFile
+        releaseAssets(shadowJar.archiveFile, sourcesJar.archiveFile)
         allowUploadToExisting true
         generateReleaseNotes true
     }
-    tasks.githubRelease.dependsOn shadowJar
-    tasks.githubRelease.dependsOn sourcesJar
+    tasks.githubRelease.dependsOn(shadowJar, sourcesJar)
 }
