@@ -18,8 +18,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'folk.sisby:kaleido-config:0.1+1.0.1-beta.3'
-    include 'folk.sisby:kaleido-config:0.1+1.0.1-beta.3'
+    implementation 'folk.sisby:kaleido-config:0.1.0+1.1.0-beta.3'
+    include 'folk.sisby:kaleido-config:0.1.0+1.1.0-beta.3'
 }
 ```
 
