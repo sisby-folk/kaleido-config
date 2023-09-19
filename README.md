@@ -1,5 +1,5 @@
 <!--suppress HtmlDeprecatedTag, XmlDeprecatedElement, HtmlDeprecatedAttribute -->
-<center><p align="center">A drop-in toml config library suitable for minecraft mods.</p></center> 
+<center><p align="center">A drop-in reflective configuration library suitable for minecraft mods. </p></center> 
 
 ---
 
