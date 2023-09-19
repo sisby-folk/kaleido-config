@@ -1,3 +1,13 @@
+//file:noinspection GroovyAssignabilityCheck
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "com.github.breadmoirai:github-release:2.4.1"
+    }
+}
+
 plugins {
     id 'java-library'
     id 'maven-publish'
@@ -53,13 +63,15 @@ shadowJar {
     minimize()
 }
 
-
 task sourcesJar(type: Jar) {
     archiveClassifier = 'sources'
 
     from sourceSets.main.allSource
     from 'src/lib/java'
 }
+
+tasks.build.dependsOn tasks.shadowJar
+tasks.build.dependsOn tasks.sourcesJar
 
 publishing {
     repositories {
@@ -85,5 +97,22 @@ publishing {
     }
 }
 
-tasks.build.dependsOn tasks.shadowJar
-tasks.build.dependsOn tasks.sourcesJar
+if (System.getenv("GITHUB_TOKEN")) {
+    apply plugin: "com.github.breadmoirai.github-release"
+    githubRelease {
+        token System.getenv("GITHUB_TOKEN")
+        owner 'sisby-folk'
+        repo "kaleido-config"
+        tagName 'v' + baseVersion
+        releaseName baseVersion
+        targetCommitish 'main'
+        draft false
+        prerelease false
+        releaseAssets shadowJar.archiveFile
+        releaseAssets sourcesJar.archiveFile
+        allowUploadToExisting true
+        generateReleaseNotes true
+    }
+    tasks.githubRelease.dependsOn shadowJar
+    tasks.githubRelease.dependsOn sourcesJar
+}
