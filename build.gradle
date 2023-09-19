@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+base {
+    group = "folk.sisby"
+    archivesName = "kaleido-config"
+    version = "0.1"
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.quiltmc.org/repository/release'}
+}
+
+configurations {
+    shade
+    compileOnly.extendsFrom shade
+}
+
+dependencies {
+    shade 'com.electronwill.night-config:core:3.6.7'
+    shade 'com.electronwill.night-config:toml:3.6.7'
+    shade 'org.quiltmc:quilt-config:1.1.0-beta.3'
+}
+
+jar {
+}
+
+shadowJar {
+    configurations = [project.configurations.shade]
+
+    relocate 'org.quiltmc.config', 'folk.sisby.kaleido.lib.quiltconfig'
+    relocate 'com.electronwill.nightconfig', 'folk.sisby.kaleido.lib.nightconfig'
+
+    exclude 'META-INF/**'
+    exclude 'LICENSE.txt'
+}
+
+tasks.register('sourcesJar', Jar) {
+    from sourceSets.main.allSource
+    from 'src/lib/java'
+}
+
+publishing {
+    repositories {
+        if (System.getenv("KALEIDO_MAVEN_URL")) {
+            maven {
+                url = System.getenv("KALEIDO_MAVEN_URL")
+                credentials {
+                    username = System.getenv("KALEIDO_MAVEN_USERNAME")
+                    password = System.getenv("KALEIDO_MAVEN_PASSWORD")
+                }
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = project.base.archivesName
+            version = project.version
+            artifact shadowJar
+            artifact sourcesJar
+        }
+    }
+}
