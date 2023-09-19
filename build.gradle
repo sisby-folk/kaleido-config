@@ -69,7 +69,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId = project.group
-            artifactId = project.base.archivesName
+            artifactId = 'kaleido-config'
             version = project.version
             artifact shadowJar
             artifact sourcesJar
