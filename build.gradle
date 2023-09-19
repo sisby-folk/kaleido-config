@@ -42,6 +42,10 @@ shadowJar {
 
     exclude 'META-INF/**'
     exclude 'LICENSE.txt'
+    exclude 'org/jetbrains/**'
+    exclude 'org/intellij/**'
+
+    minimize()
 }
 
 tasks.register('sourcesJar', Jar) {
