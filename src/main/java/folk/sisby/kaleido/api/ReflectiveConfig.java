@@ -15,4 +15,8 @@ public abstract class ReflectiveConfig extends org.quiltmc.config.api.Reflective
     public static <T extends ReflectiveConfig> T createToml(Path configPath, String familyId, String id, Class<T> configCreatorClass) {
         return create(KaleidoConfig.tomlEnvironment(configPath), familyId, id, configCreatorClass);
     }
+
+    public static <T extends ReflectiveConfig> T createCss(Path configPath, String familyId, String id, Class<T> configCreatorClass) {
+        return create(KaleidoConfig.cssEnvironment(configPath), familyId, id, configCreatorClass);
+    }
 }

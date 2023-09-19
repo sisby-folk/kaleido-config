@@ -15,4 +15,8 @@ public abstract class WrappedConfig extends org.quiltmc.config.api.WrappedConfig
     public static <T extends WrappedConfig> T createToml(Path configPath, String familyId, String id, Class<T> configCreatorClass) {
         return create(KaleidoConfig.tomlEnvironment(configPath), familyId, id, configCreatorClass);
     }
+
+    public static <T extends WrappedConfig> T createCss(Path configPath, String familyId, String id, Class<T> configCreatorClass) {
+        return create(KaleidoConfig.cssEnvironment(configPath), familyId, id, configCreatorClass);
+    }
 }
