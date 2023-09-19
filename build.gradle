@@ -4,6 +4,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
+sourceCompatibility = targetCompatibility = 17
+
 base {
     group = 'folk.sisby'
     archivesName = 'kaleido-config'
@@ -65,8 +67,8 @@ publishing {
             maven {
                 url = System.getenv('KALEIDO_MAVEN_URL')
                 credentials {
-                    username = System.getenv('KALEIDO_MAVEN_USERNAME')
-                    password = System.getenv('KALEIDO_MAVEN_PASSWORD')
+                    username System.getenv('KALEIDO_MAVEN_USERNAME')
+                    password System.getenv('KALEIDO_MAVEN_PASSWORD')
                 }
             }
         }

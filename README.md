@@ -24,17 +24,27 @@ dependencies {
 ```
 
 ```
-public class CoolNewConfig extends ReflectiveConfig {
+import folk.sisby.kaleido.api.WrappedConfig;
+import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
+import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueList;
+
+public class CoolNewConfig extends WrappedConfig {
     @Comment("Enables the functionality!")
-    public static boolean enabled = false;
+    public final Boolean enabled = false;
+    
+    @Comment("A list of names to call you in the debug logs")
+    public final List<String> coolNames = ValueList.create("", "buddy", "pal", "amigo");
 }
 ```
-
-Feel free to read [these docs](https://github.com/QuiltMC/quilt-config/blob/18eb16f8bc33afd026ebe22eac62a5613db0395a/src/main/java/org/quiltmc/config/api/Config.java#L143-L171) for information on field types.
+Field restrictions can be found [here](https://github.com/QuiltMC/quilt-config/blob/18eb16f8bc33afd026ebe22eac62a5613db0395a/src/main/java/org/quiltmc/config/api/Config.java#L183-L193).
 
 ```
 /* Main Class / Initializer */
 public class CoolProject {
-    public static final CoolNewConfig CONFIG = KaleidoConfig.createToml(FabricLoader.getInstance().getConfigDir(), "coolFolder", "coolFilename", CoolNewConfig.class);
+    public static final CoolNewConfig CONFIG = CoolNewConfig.createToml(FabricLoader.getInstance().getConfigDir(), "coolFolder", "coolFilename", CoolNewConfig.class);
+    
+    public static void main() {
+        System.out.println(CONFIG.coolNames.get(new Random().nextInt(CONFIG.coolNames.size()));
+    }
 }
 ```
