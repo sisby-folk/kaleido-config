@@ -14,7 +14,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-sourceCompatibility = targetCompatibility = 17
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 
 base {
     group = 'folk.sisby'
@@ -63,9 +63,8 @@ shadowJar {
     minimize()
 }
 
-task sourcesJar(type: Jar) {
+tasks.register('sourcesJar', Jar) {
     archiveClassifier = 'sources'
-
     from sourceSets.main.allSource
     from 'src/lib/java'
 }
@@ -75,14 +74,10 @@ tasks.build.dependsOn tasks.sourcesJar
 
 publishing {
     repositories {
-        if (System.getenv('KALEIDO_MAVEN_URL')) {
-            maven {
-                url = System.getenv('KALEIDO_MAVEN_URL')
-                credentials {
-                    username System.getenv('KALEIDO_MAVEN_USERNAME')
-                    password System.getenv('KALEIDO_MAVEN_PASSWORD')
-                }
-            }
+        maven {
+            name 'SleepingTown'
+            url 'https://repo-api.sleeping.town/'
+            credentials(PasswordCredentials)
         }
     }
 
