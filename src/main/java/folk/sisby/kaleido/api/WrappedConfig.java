@@ -1,5 +1,6 @@
 package folk.sisby.kaleido.api;
 
+import org.quiltmc.config.api.Config;
 import org.quiltmc.config.impl.ConfigImpl;
 import org.quiltmc.config.implementor_api.ConfigEnvironment;
 
@@ -14,5 +15,9 @@ public abstract class WrappedConfig extends org.quiltmc.config.api.WrappedConfig
 
     public static <T extends WrappedConfig> T createToml(Path configPath, String familyId, String id, Class<T> configCreatorClass) {
         return create(KaleidoConfig.tomlEnvironment(configPath), familyId, id, configCreatorClass);
+    }
+
+    @SuppressWarnings("deprecation")
+    public interface Section extends Config.Section {
     }
 }
