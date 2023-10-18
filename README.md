@@ -5,10 +5,12 @@
 
 Kaleido is a standalone JIJ-able implementation of [Quilt Config](https://github.com/QuiltMC/quilt-config).
 
+It's completely environment independent, only requiring a path to a configuration folder.
+
 It supports:
  - Toml (via NightConfig)
 
-Kaleido shadows its dependencies to minimize size and avoid conflicts with other JIJ versions.
+Kaleido shadows its dependencies to minimize size and avoid conflicts with other instances of Quilt Config on the classpath.
 
 ### Usage
 
@@ -60,3 +62,5 @@ public class CoolMainClass {
     }
 }
 ```
+
+Usage Examples: [Euphonium](https://github.com/sisby-folk/euphonium/blob/1.20/src/main/java/folk/sisby/euphonium/EuphoniumConfig.java), [Switchy](https://github.com/sisby-folk/switchy/blob/1.19/core/src/main/java/folk/sisby/switchy/SwitchyConfig.java), [Crunchy Crunchy](https://github.com/sisby-folk/crunchy-crunchy-advancements/blob/1.18/src/main/java/folk/sisby/crunchy_crunchy_advancements/CrunchyConfig.java), [PicoHUD](https://github.com/sisby-folk/picohud/blob/1.19/src/main/java/folk/sisby/picohud/PicoHudConfig.java).
