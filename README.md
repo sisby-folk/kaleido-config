@@ -40,7 +40,7 @@ public class CoolNewConfig extends WrappedConfig {
     public final EasterEggs easterEggs = new EasterEggs();
     public static final class EasterEggs implements Section {
         @Comment("The chance for the greeting functionality to be run again (applies recursively)")
-        @FloatRange(min=0.0D, max=0.9D) /* Also supports @IntegerRange(min, max) and @Matches(regex) */
+        @FloatRange(min=0.0D, max=0.9D) /* Also supports @IntegerRange and @Matches(regex) */
         public final Double repetitionChance = 0.1D;
     }
 }
