@@ -63,4 +63,10 @@ public class CoolMainClass {
 }
 ```
 
-Usage Examples: [Euphonium](https://github.com/sisby-folk/euphonium/blob/1.20/src/main/java/folk/sisby/euphonium/EuphoniumConfig.java), [Switchy](https://github.com/sisby-folk/switchy/blob/1.19/core/src/main/java/folk/sisby/switchy/SwitchyConfig.java), [Crunchy Crunchy](https://github.com/sisby-folk/crunchy-crunchy-advancements/blob/1.18/src/main/java/folk/sisby/crunchy_crunchy_advancements/CrunchyConfig.java), [PicoHUD](https://github.com/sisby-folk/picohud/blob/1.19/src/main/java/folk/sisby/picohud/PicoHudConfig.java).
+Usage Examples: 
+[Euphonium](https://github.com/sisby-folk/euphonium/blob/1.20/src/main/java/folk/sisby/euphonium/EuphoniumConfig.java),
+[Switchy](https://github.com/sisby-folk/switchy/blob/1.19/core/src/main/java/folk/sisby/switchy/SwitchyConfig.java),
+[Crunchy Crunchy](https://github.com/sisby-folk/crunchy-crunchy-advancements/blob/1.18/src/main/java/folk/sisby/crunchy_crunchy_advancements/CrunchyConfig.java),
+[PicoHUD](https://github.com/sisby-folk/picohud/blob/1.19/src/main/java/folk/sisby/picohud/PicoHudConfig.java),
+[Inventory Tabs](https://github.com/sisby-folk/inventory-tabs/blob/1.19/src/main/java/folk/sisby/inventory_tabs/InventoryTabsConfig.java),
+[Starcaller](https://github.com/sisby-folk/starcaller/blob/1.20.4/src/main/java/folk/sisby/starcaller/StarcallerConfig.java).
