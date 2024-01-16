@@ -12,6 +12,10 @@ It supports:
 
 Kaleido shadows its dependencies to minimize size and avoid conflicts with other instances of Quilt Config on the classpath.
 
+#### Quilt Config 1.2
+
+As of 1.2, Quilt Config has adopted the TOML/JSON5 serializer classes originally added by Quilt Loader. This simplifies the implementation of Kaleido significantly, but quilt config is still unsafe to JIJ directly due to its inclusion in QL potentially causing version mismatches. Though now only 50 lines of wrapper code, kaleido does still solve this problem. 
+
 ### Usage
 
 ```

@@ -19,17 +19,18 @@ sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 base {
     group = 'folk.sisby'
     archivesName = 'kaleido-config'
-    version = '0.1.1'
+    version = '0.2.0'
 }
 
 def baseVersion = project.version
-def qc_version = '1.1.0-beta.3'
+def qc_version = '1.2.0-beta.5'
 
 project.version = project.version + '+' + qc_version
 
 repositories {
     mavenCentral()
     maven { url 'https://maven.quiltmc.org/repository/release'}
+    mavenLocal()
 }
 
 configurations {
@@ -38,8 +39,6 @@ configurations {
 }
 
 dependencies {
-    shade 'com.electronwill.night-config:core:3.6.7'
-    shade 'com.electronwill.night-config:toml:3.6.7'
     shade 'org.quiltmc:quilt-config:' + qc_version
 }
 
@@ -53,7 +52,6 @@ shadowJar {
     configurations = [project.configurations.shade]
 
     relocate 'org.quiltmc.config', 'folk.sisby.kaleido.lib.quiltconfig'
-    relocate 'com.electronwill.nightconfig', 'folk.sisby.kaleido.lib.nightconfig'
 
     exclude 'META-INF/**'
     exclude 'LICENSE.txt'
