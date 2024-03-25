@@ -18,7 +18,7 @@ As of 1.2, Quilt Config has adopted the TOML/JSON5 serializer classes originally
 
 ### Usage
 
-```
+```groovy
 repositories {
     maven { url 'https://repo.sleeping.town/' }
 }
@@ -29,7 +29,7 @@ dependencies {
 }
 ```
 
-```
+```java
 import folk.sisby.kaleido.api.WrappedConfig;
 import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
 import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueList;
@@ -52,7 +52,7 @@ public class CoolNewConfig extends WrappedConfig {
 }
 ```
 
-```
+```java
 public class CoolMainClass {
     public static final CoolNewConfig CONFIG = CoolNewConfig.createToml(FabricLoader.getInstance().getConfigDir(), "coolFolder", "coolFilename", CoolNewConfig.class);
     
