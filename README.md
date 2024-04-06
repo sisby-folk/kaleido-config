@@ -5,16 +5,17 @@
 
 Kaleido is a standalone JIJ-able implementation of [Quilt Config](https://github.com/QuiltMC/quilt-config).
 
-It's completely environment independent, only requiring a path to a configuration folder.
+It's completely environment independent, requiring only a path to a configuration folder.
 
-It supports:
- - Toml (via NightConfig)
+Kaleido shadows Quilt Config to minimize size and avoid classpath conflicts.
 
-Kaleido shadows its dependencies to minimize size and avoid conflicts with other instances of Quilt Config on the classpath.
+#### Quilt Config 1.2+
 
-#### Quilt Config 1.2
+Since 1.2, Quilt Config has made a lot of changes that seem to pay full attention to its standalone usage, as well as the importance of keeping its minecraft-dependent code and minecraft-independent code separate.
 
-As of 1.2, Quilt Config has adopted the TOML/JSON5 serializer classes originally added by Quilt Loader. This simplifies the implementation of Kaleido significantly, but quilt config is still unsafe to JIJ directly due to its inclusion in QL potentially causing version mismatches. Though now only 50 lines of wrapper code, kaleido does still solve this problem. 
+This does include inbuilt serializers (that we originally had to shadow), but not nicely exposing the API for arbitrary config paths or solving potential conflicts introduced by updating the loader on an old minecraft version.
+
+Shoutouts to ix0rai et al's work on this so far! Here's to potentially solving the "single mixin mod that's only incompatible with a version because of a bundled config screen" problem for good.
 
 ### Usage
 
@@ -24,33 +25,14 @@ repositories {
 }
 
 dependencies {
-    implementation 'folk.sisby:kaleido-config:0.1.1+1.1.0-beta.3'
-    include 'folk.sisby:kaleido-config:0.1.1+1.1.0-beta.3'
+    implementation 'folk.sisby:kaleido-config:0.3.0+1.3.0'
+    include 'folk.sisby:kaleido-config:0.3.0+1.3.0'
 }
 ```
 
-```java
-import folk.sisby.kaleido.api.WrappedConfig;
-import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
-import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueList;
+Config usage is best defined by the [Wiki](https://github.com/QuiltMC/developer-wiki/blob/main/wiki/configuration/getting-started/en.md).
 
-public class CoolNewConfig extends WrappedConfig {
-    @Comment("Whether to greet you on startup via the log")
-    public final Boolean enabled = false;
-    /* Supports Boolean, Integer, Long, Double, Float, String, or any enum */
-    
-    @Comment("A list of names to call you in the logs")
-    public final List<String> coolNames = ValueList.create("", "buddy", "pal", "amigo");
-    /* Also supports Map<String, T> via ValueMap.create() */
-
-    public final EasterEggs easterEggs = new EasterEggs();
-    public static final class EasterEggs implements Section {
-        @Comment("The chance for the greeting functionality to be run again (applies recursively)")
-        @FloatRange(min=0.0D, max=0.9D) /* Also supports @IntegerRange and @Matches(regex) */
-        public final Double repetitionChance = 0.1D;
-    }
-}
-```
+The only difference is the way to create the config instance - here's a sample:
 
 ```java
 public class CoolMainClass {
@@ -66,6 +48,35 @@ public class CoolMainClass {
     }
 }
 ```
+
+The wiki covers ReflectiveConfig, which **supports changing the value of primitives from code** and is a little more type-robust.
+
+If you'd prefer to use WrappedConfig, which lacks these features but **avoids the need to import config packages anywhere but your config class** - here's quick sample:
+
+```java
+import folk.sisby.kaleido.api.WrappedConfig;
+import folk.sisby.kaleido.lib.quiltconfig.api.annotations.Comment;
+import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueList;
+
+public class CoolNewConfig extends WrappedConfig {
+    @Comment("Whether to greet you on startup via the log")
+    public Boolean enabled = false;
+    /* Supports Boolean, Integer, Long, Double, Float, String, or any enum */
+    
+    @Comment("A list of names to call you in the logs")
+    public List<String> coolNames = ValueList.create("", "buddy", "pal", "amigo");
+    /* Also supports Map<String, T> via ValueMap.create() */
+
+    public EasterEggs easterEggs = new EasterEggs();
+    public static class EasterEggs implements Section {
+        @Comment("The chance for the greeting functionality to be run again (applies recursively)")
+        @FloatRange(min=0.0D, max=0.9D) /* Also supports @IntegerRange and @Matches(regex) */
+        public Double repetitionChance = 0.1D;
+    }
+}
+```
+
+Note that you can add to and remove from maps and lists (e.g. to auto-populate data-driven options), and this will be reflected in-file, even in WrappedConfig.
 
 Usage Examples: 
 [Euphonium](https://github.com/sisby-folk/euphonium/blob/1.20/src/main/java/folk/sisby/euphonium/EuphoniumConfig.java),

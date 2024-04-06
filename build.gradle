@@ -14,16 +14,16 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 base {
     group = 'folk.sisby'
     archivesName = 'kaleido-config'
-    version = '0.2.0'
+    version = '0.3.0'
 }
 
 def baseVersion = project.version
-def qc_version = '1.2.0-beta.5'
+def qc_version = '1.3.0'
 
 project.version = project.version + '+' + qc_version
 
@@ -40,6 +40,7 @@ configurations {
 
 dependencies {
     shade 'org.quiltmc:quilt-config:' + qc_version
+    shade 'org.quiltmc.quilt-config.serializers:toml:' + qc_version
 }
 
 jar {
