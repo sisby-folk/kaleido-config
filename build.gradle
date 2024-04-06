@@ -105,6 +105,15 @@ if (System.getenv("GITHUB_TOKEN")) {
         releaseAssets(shadowJar.archiveFile, sourcesJar.archiveFile)
         allowUploadToExisting true
         generateReleaseNotes true
+        body rootProject.file("CHANGELOG.md").text
     }
     tasks.githubRelease.dependsOn(shadowJar, sourcesJar)
+}
+
+if (System.getenv("GITHUB_TOKEN")) {
+    tasks.register("fullRelease") {
+        group "publishing"
+        dependsOn "githubRelease"
+        dependsOn "publish"
+    }
 }

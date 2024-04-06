@@ -28,3 +28,4 @@ bin/
 
 # datagen
 datagen/out/
+/CHANGELOG.md
