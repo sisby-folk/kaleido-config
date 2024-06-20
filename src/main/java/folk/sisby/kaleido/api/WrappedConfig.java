@@ -9,12 +9,16 @@ import java.nio.file.Paths;
 
 @SuppressWarnings({"deprecation", "unused"})
 public abstract class WrappedConfig extends org.quiltmc.config.api.WrappedConfig {
-    public static <T extends WrappedConfig> T create(ConfigEnvironment environment, String familyId, String id, Class<T> configCreatorClass) {
-        return ConfigImpl.create(environment, familyId, id, Paths.get(""), b -> {}, configCreatorClass, b -> {});
+    public static <T extends WrappedConfig> T create(ConfigEnvironment environment, String folderName, String fileName, Class<T> configCreatorClass) {
+        return ConfigImpl.create(environment, folderName, fileName, Paths.get(""), b -> {}, configCreatorClass, b -> {});
     }
 
-    public static <T extends WrappedConfig> T createToml(Path configPath, String familyId, String id, Class<T> configCreatorClass) {
-        return create(KaleidoConfig.tomlEnvironment(configPath), familyId, id, configCreatorClass);
+    public static <T extends WrappedConfig> T createToml(Path configPath, String folderName, String fileName, Class<T> configCreatorClass) {
+        return create(KaleidoConfig.tomlEnvironment(configPath), folderName, fileName, configCreatorClass);
+    }
+
+    public static <T extends WrappedConfig> T createJson5(Path configPath, String folderName, String fileName, Class<T> configCreatorClass) {
+        return create(KaleidoConfig.tomlEnvironment(configPath), folderName, fileName, configCreatorClass);
     }
 
     @SuppressWarnings("deprecation")
