@@ -13,12 +13,8 @@ public abstract class WrappedConfig extends org.quiltmc.config.api.WrappedConfig
         return ConfigImpl.create(environment, folderName, fileName, Paths.get(""), b -> {}, configCreatorClass, b -> {});
     }
 
-    public static <T extends WrappedConfig> T createToml(Path configPath, String folderName, String fileName, Class<T> configCreatorClass) {
-        return create(KaleidoConfig.tomlEnvironment(configPath), folderName, fileName, configCreatorClass);
-    }
-
     public static <T extends WrappedConfig> T createJson5(Path configPath, String folderName, String fileName, Class<T> configCreatorClass) {
-        return create(KaleidoConfig.tomlEnvironment(configPath), folderName, fileName, configCreatorClass);
+        return create(KaleidoConfig.json5Environment(configPath), folderName, fileName, configCreatorClass);
     }
 
     @SuppressWarnings("deprecation")

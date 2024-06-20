@@ -40,7 +40,6 @@ configurations {
 
 dependencies {
     shade 'org.quiltmc:quilt-config:' + qc_version
-    shade 'org.quiltmc.quilt-config.serializers:toml:' + qc_version
     shade 'org.quiltmc.quilt-config.serializers:json5:' + qc_version
 }
 
@@ -55,9 +54,7 @@ shadowJar {
 
     relocate 'org.quiltmc.config', 'folk.sisby.kaleido.lib.quiltconfig'
     relocate 'org.quiltmc.parsers', 'folk.sisby.kaleido.lib.quiltparsers'
-    relocate 'org.quiltmc.parsers', 'folk.sisby.kaleido.lib.quiltparsers'
     relocate 'com.electronwill.nightconfig.core', 'folk.sisby.kaleido.lib.nightcore'
-    relocate 'com.electronwill.nightconfig.toml', 'folk.sisby.kaleido.lib.nighttoml'
 
     exclude 'META-INF/**'
     exclude 'LICENSE.txt'

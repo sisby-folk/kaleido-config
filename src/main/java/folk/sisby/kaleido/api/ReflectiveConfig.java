@@ -13,10 +13,6 @@ public abstract class ReflectiveConfig extends org.quiltmc.config.api.Reflective
         return ConfigImpl.createReflective(environment, folderName, fileName, Paths.get(""), b -> {}, configCreatorClass, b -> {});
     }
 
-    public static <T extends ReflectiveConfig> T createToml(Path configPath, String folderName, String fileName, Class<T> configCreatorClass) {
-        return create(KaleidoConfig.tomlEnvironment(configPath), folderName, fileName, configCreatorClass);
-    }
-
     public static <T extends ReflectiveConfig> T createJson5(Path configPath, String folderName, String fileName, Class<T> configCreatorClass) {
         return create(KaleidoConfig.json5Environment(configPath), folderName, fileName, configCreatorClass);
     }
