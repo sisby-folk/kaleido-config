@@ -1,5 +1,5 @@
 <!--suppress HtmlDeprecatedTag, XmlDeprecatedElement, HtmlDeprecatedAttribute -->
-<center><p align="center">A drop-in reflective configuration library suitable for minecraft mods. </p></center> 
+<center><p align="center">A drop-in reflective configuration library suitable for java projects, including minecraft mods. </p></center> 
 
 ---
 
@@ -25,8 +25,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'folk.sisby:kaleido-config:0.3.0+1.3.0'
-    include 'folk.sisby:kaleido-config:0.3.0+1.3.0'
+    implementation 'folk.sisby:kaleido-config:0.3.1+1.3.1'
+    include 'folk.sisby:kaleido-config:0.3.1+1.3.1'
 }
 ```
 
@@ -61,7 +61,7 @@ import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueList;
 public class CoolNewConfig extends WrappedConfig {
     @Comment("Whether to greet you on startup via the log")
     public Boolean enabled = false;
-    /* Supports Boolean, Integer, Long, Double, Float, String, or any enum */
+    /* Supports boolean, int, long, double, float, String, or any enum */
     
     @Comment("A list of names to call you in the logs")
     public List<String> coolNames = ValueList.create("", "buddy", "pal", "amigo");
@@ -71,7 +71,7 @@ public class CoolNewConfig extends WrappedConfig {
     public static class EasterEggs implements Section {
         @Comment("The chance for the greeting functionality to be run again (applies recursively)")
         @FloatRange(min=0.0D, max=0.9D) /* Also supports @IntegerRange and @Matches(regex) */
-        public Double repetitionChance = 0.1D;
+        public double repetitionChance = 0.1D;
     }
 }
 ```
