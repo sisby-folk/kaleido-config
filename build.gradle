@@ -97,8 +97,8 @@ if (System.getenv("GITHUB_TOKEN")) {
         token System.getenv("GITHUB_TOKEN")
         owner 'sisby-folk'
         repo "kaleido-config"
-        tagName 'v' + baseVersion
-        releaseName baseVersion
+        tagName 'v' + version
+        releaseName version
         targetCommitish 'main'
         draft false
         prerelease false
