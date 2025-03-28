@@ -19,7 +19,7 @@ sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 base {
     group = 'folk.sisby'
     archivesName = 'kaleido-config'
-    version = '0.3.2'
+    version = '0.3.3'
 }
 
 def baseVersion = project.version
