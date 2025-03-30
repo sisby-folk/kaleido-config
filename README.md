@@ -60,7 +60,7 @@ import folk.sisby.kaleido.lib.quiltconfig.api.values.ValueList;
 
 public class CoolNewConfig extends WrappedConfig {
     @Comment("Whether to greet you on startup via the log")
-    public Boolean enabled = false;
+    public boolean enabled = false;
     /* Supports boolean, int, long, double, float, String, or any enum */
     
     @Comment("A list of names to call you in the logs")
