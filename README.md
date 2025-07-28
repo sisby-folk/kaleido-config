@@ -46,20 +46,39 @@ Lastly, use the `createToml` helper to create an instance of the config bound to
 ```java
 public class Greeter {
     // The file is created when this field is initialized, so put it inside a class with early-run / initializer code.
-    public static final GreeterConfig CONFIG = GreeterConfig.createToml(/* config path: */ Path.of("config"), /* parent folder (for multiple config files): */ "", /* file name: */ "greeter", GreeterConfig.class);
+    public static final GreeterConfig CONFIG = GreeterConfig.createToml(/* config path: */ Paths.get("config"), /* parent folder (for multiple config files): */ "", /* file name: */ "greeter", GreeterConfig.class);
 
     public static void main(String[] args) {
         if (CONFIG.enabled) {
             Random random = new Random();
             do {
-                System.out.printf("Hi %s: %s", CONFIG.coolNames.get(random.nextInt(CONFIG.coolNames.size()), String.join(", ", args)));
+                System.out.printf("Hi %s: %s", CONFIG.coolNames.get(random.nextInt(CONFIG.coolNames.size())), String.join(", ", args));
             } while (random.nextFloat() <= CONFIG.easterEggs.repetitionChance);
         }
     }
 }
 ```
 
-**More complex config classes:**
+On run, this creates a config file at `config/greeter.toml`:
+
+```toml
+# Whether to greet you on startup via the log
+# default: false
+enabled = false
+# A list of names to call you in the logs
+coolNames = ["buddy", "pal", "amigo"]
+
+[easterEggs]
+	# The chance for the greeting functionality to be run again (applies recursively)
+	# range: 0.0 - 0.9
+	# default: 0.1
+	repetitionChance = 0.1
+```
+
+On restart (or after [McQoy](https://modrinth.com/mod/mcqoy) editing), the value of the fields will be populated from the content of the file.
+
+### Complex Examples
+
 - [PicoHUD](https://github.com/sisby-folk/picohud/blob/1.19/src/main/java/folk/sisby/picohud/PicoHudConfig.java) - with a self-contained instance, which is a nice pattern for single-mixin mods
 - [Item Descriptions](https://github.com/cassiancc/Item-Descriptions/blob/next-1.10/src/main/java/cc/cassian/item_descriptions/client/config/ModConfig.java) - using ReflectiveConfig
 - [Surveyor](https://github.com/sisby-folk/surveyor/blob/1.20/src/main/java/folk/sisby/surveyor/config/SurveyorConfig.java) - with heavy use of sections and enums
