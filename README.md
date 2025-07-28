@@ -19,7 +19,7 @@ dependencies {
 }
 ```
 
-Then, create a config class. Note that fields must be non-final, but shouldn't be reassigned ([use `ReflectiveConfig` instead]([wiki](https://github.com/QuiltMC/developer-wiki/blob/main/wiki/configuration/getting-started/en.md))).
+Then, create a config class. Fields must be non-final, but shouldn't be reassigned ([use `ReflectiveConfig` instead]([wiki](https://github.com/QuiltMC/developer-wiki/blob/main/wiki/configuration/getting-started/en.md))).
 
 ```java
 public class GreeterConfig extends WrappedConfig {
@@ -67,13 +67,16 @@ public class Greeter {
 
 ## Breakages
 
-We won't publish a breaking version of Kaleido. If we're ever sold on a breaking change, we'll change the project classpath to prevent JIJ conflicts.
+We won't publish a breaking version of Kaleido.
+
+If we're ever sold on a breaking change, we'll change the project classpath to prevent JIJ conflicts.
 
 ## Afterword
 
 This project isn't intended to steal attention from the actual effort put into Quilt Config - we're just re-exposing it in another context.
 
 Quilt Config is an extremely nice to use config solution, and in this (trivially created) form, it's extremely powerful as a version-universal, platform-universal way to define configuration for minecraft mods.
+
 We felt this was going to go unacknowledged if it wasn't openly supported (or had finicky issues when JIJ'd alongside Quilt Loader, as raw QConf does) - so Kaleido seeks to rectify that.
 
 If the original Quilt Config repo is ever archived or the maven goes down, we will convert this repo into a fork and re-create open issues.
