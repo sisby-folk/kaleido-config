@@ -2,7 +2,7 @@
 
 A JIJ-safe implementation of [Quilt Config](https://github.com/QuiltMC/quilt-config) (a really good pure-java config library)
 
-If used in a Minecraft mod, players can pair the mod with [McQoy](modrinth.com/mod/mcqoy) at runtime for in-game configuration.
+If used in a Minecraft mod, players can pair the mod with [McQoy](https://modrinth.com/mod/mcqoy) for in-game configuration.
 
 ## Usage
 
