@@ -46,7 +46,7 @@ Lastly, use the `createToml` helper to create an instance of the config bound to
 ```java
 public class Greeter {
     // The file is created when this field is initialized, so put it inside a class with early-run / initializer code.
-    public static final GreeterConfig CONFIG = GreeterConfig.createToml(/* config path: */ Path.of(""), /* parent folder (for multiple config files): */ "", /* file name: */ "greeter", GreeterConfig.class);
+    public static final GreeterConfig CONFIG = GreeterConfig.createToml(/* config path: */ Path.of("config"), /* parent folder (for multiple config files): */ "", /* file name: */ "greeter", GreeterConfig.class);
 
     public static void main(String[] args) {
         if (CONFIG.enabled) {
