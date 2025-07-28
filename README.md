@@ -19,7 +19,7 @@ dependencies {
 }
 ```
 
-Then, create a config class. Fields must be non-final, but shouldn't be reassigned ([use `ReflectiveConfig` instead]([wiki](https://github.com/QuiltMC/developer-wiki/blob/main/wiki/configuration/getting-started/en.md))).
+Then, create a config class. Fields must be non-final, but shouldn't be reassigned (use [ReflectiveConfig](https://github.com/QuiltMC/developer-wiki/blob/main/wiki/configuration/getting-started/en.md) for that).
 
 ```java
 public class GreeterConfig extends WrappedConfig {
